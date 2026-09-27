@@ -1,0 +1,179 @@
+.settings-card {
+  background: #181c25;
+  border: 1px solid #292f3c;
+  border-radius: 12px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.settings-card h2 {
+  margin: 0 0 20px;
+  font-size: 20px;
+}
+
+.mode-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #2b3140;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.mode-option:hover {
+  background: #1d222d;
+}
+
+.mode-option input {
+  margin-top: 3px;
+}
+
+.mode-option span {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mode-option strong {
+  font-size: 15px;
+}
+
+.mode-option small {
+  color: #9299aa;
+  line-height: 1.5;
+}
+
+.wifi-fields {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.wifi-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.wifi-fields label > span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.wifi-fields input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  border: 1px solid #343b4a;
+  border-radius: 7px;
+  background: #10131a;
+  color: #e8eaf0;
+  font-size: 14px;
+}
+
+.wifi-fields input:focus {
+  outline: none;
+  border-color: #5d8cff;
+}
+
+.imu-rate-field {
+  margin-top: 24px;
+}
+
+.imu-rate-field label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.imu-rate-field label > span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.imu-rate-value {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.imu-rate-field input[type="range"] {
+  width: 100%;
+}
+
+.imu-rate-range {
+  margin-top: 6px;
+  color: #9299aa;
+  font-size: 12px;
+  text-align: right;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.settings-status {
+  margin-top: 16px;
+  padding: 11px 13px;
+  border-radius: 7px;
+  font-size: 14px;
+}
+
+.settings-status.info {
+  background: #202a3b;
+  color: #9dbbff;
+}
+
+.settings-status.success {
+  background: #193126;
+  color: #79dca1;
+}
+
+.settings-status.error {
+  background: #351f24;
+  color: #ff8f9d;
+}
+
+.settings-card p {
+  color: #a3a9b8;
+  line-height: 1.6;
+}
+
+.settings-card p strong {
+  color: #e8eaf0;
+}
+
+.settings-warning {
+  color: #e5b86b !important;
+  padding: 12px;
+  background: #2b2519;
+  border-radius: 7px;
+}
+
+@media (max-width: 650px) {
+  .settings-page {
+    padding: 20px;
+  }
+
+  .settings-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .settings-back {
+    width: 100%;
+  }
+
+  .settings-actions {
+    justify-content: stretch;
+  }
+
+  .save-button {
+    width: 100%;
+  }
+}

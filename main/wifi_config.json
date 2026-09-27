@@ -1,0 +1,1 @@
+{"ssid": "SSSSSSSSSSSSSSSSSSSSSSSSS", "event_rate_hz": 4, "ap_channel": 6, "password": "RRRRRRRRRRRRRRRRRRRR", "ap_password": "YOUR_AP_PASSWORD", "imu_rate_hz": 26, "mode": "AUTO", "ap_ssid": "ESP32-IMU"}
