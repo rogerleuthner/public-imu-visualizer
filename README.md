@@ -101,6 +101,18 @@ The default I2C configuration in `main.py` is:
 | SCL | 9 |
 | IMU Interrupt | 7 |
 
+## Pinouts Etc.
+
+The pinout is slightly complicated by the LCD and potentiometer.  Since the power draw of the LCD is so high a regular USB power source to the ESP32 is insufficient.  I've attached the basic Elegoo "power module" to provide plenty of power for all components.
+
+If you omit the LCD/potentiometer this can easily be powered by the USB-C port on the Esp32.
+
+[Go here for pinout](https://github.com/rogerleuthner/public-imu-visualizer/blob/main/doc/Pinouts.txt)
+
+<p align="left">
+  <img src="media/boards.jpg" alt="Board Pinouts" width="300">
+</p>
+
 ## Firmware Overview
 
 The MicroPython firmware entry point is `main.py`.
