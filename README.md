@@ -101,6 +101,18 @@ The default I2C configuration in `main.py` is:
 | SCL | 9 |
 | IMU Interrupt | 7 |
 
+## Pinouts Etc.
+
+The pinout is slightly complicated by the LCD and potentiometer.  Since the power draw of the LCD is so high a regular USB power source to the ESP32 is insufficient.  I've attached the basic Elegoo "power module" to provide plenty of power for all components.
+
+If you omit the LCD/potentiometer this can easily be powered by the USB-C port on the Esp32.
+
+[Go here for pinout](https://github.com/rogerleuthner/public-imu-visualizer/blob/main/doc/Pinouts.txt)
+
+<p align="left">
+  <img src="media/boards.jpg" alt="Board Pinouts" width="300">
+</p>
+
 ## Firmware Overview
 
 The MicroPython firmware entry point is `main.py`.
@@ -116,23 +128,6 @@ Responsibilities include:
 - Generating sensor packets.
 - Streaming data to connected clients.
 - Reporting system statistics.
-
-The main sensor packet contains:
-
-    {
-        "seq": 1,
-        "t": 123456,
-        "ax": 0.0,
-        "ay": 0.0,
-        "az": 1.0,
-        "gx": 0.0,
-        "gy": 0.0,
-        "gz": 0.0,
-        "roll": 0.0,
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "temp": 25.0
-    }
 
 ## Network Server
 
@@ -152,52 +147,18 @@ The configuration file is:
 
     /wifi_config.json
 
-Example configuration structure:
-
-    {
-        "mode": "AUTO",
-        "ssid": "network_name",
-        "password": "network_password",
-        "ap_ssid": "ESP32-IMU",
-        "ap_password": "YOUR_AP_PASSWORD",
-        "ap_channel": 6,
-        "imu_rate_hz": 50,
-        "event_rate_hz": 5
-    }
-
 ## HTTP API
 
 The embedded server provides the following endpoints.
 
-### Status
-
-Request:
-
-    GET /api/status
-
-Returns current network information and server status.
-
-### Configuration
-
-Request:
-
-    GET /api/config
-
-Returns public configuration information.
-
-Configuration updates:
-
-    POST /api/config
+| Method | URL |
+| -- | -- |
+| GET | /api/status |
+| GET | /api/config |
+| POST | /api/config |
+| GET | /events |
 
 The server accepts JSON configuration updates and applies network changes when required.
-
-### Sensor Events
-
-The live sensor stream uses Server-Sent Events:
-
-    GET /events
-
-The browser application receives sensor packets through this stream.
 
 ## Sensor Processing
 
@@ -208,10 +169,6 @@ The firmware:
 3. Calculates accelerometer-based orientation.
 4. Integrates gyroscope rotation.
 5. Combines both using a complementary filter.
-
-The filter coefficient is configured in `main.py`:
-
-    ALPHA = 0.98
 
 ## React Application
 
@@ -226,13 +183,7 @@ Main capabilities:
 - Connection management.
 - Orientation zeroing.
 
-The main application component is:
-
-    App.jsx
-
-The application communicates with the ESP32 through:
-
-    Wi-Fi / SSE
+The application communicates with the ESP32 through _Wi-Fi / SSE_.
 
 ## Data Flow
 
@@ -267,23 +218,6 @@ Characteristics:
 - Protection against stalled clients.
 - Limited buffering to prevent memory growth.
 
-## Project Structure
-
-A typical project layout:
-
-    .
-    ├── main.py
-    ├── imu_server.py
-    ├── lib/
-    │   ├── gy521.py
-    │   ├── lcd1602.py
-    │   ├── esp32s_monitor.py
-    │   └── version.py
-    └── web application files
-        ├── App.jsx
-        ├── App.css
-        └── supporting React components
-
 ## Running the Device
 
 1. Flash MicroPython onto the ESP32-S3.
@@ -296,6 +230,8 @@ A typical project layout:
 The default access point address configured by the server is:
 
     http://10.0.0.1/
+
+Alternatively you can configure the device (_wifi_config.json_) to connect to a LAN with a static IP address.
 
 ## Development Notes
 
