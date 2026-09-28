@@ -24,6 +24,29 @@ A MicroPython and React-based wireless IMU monitoring system built around an ESP
 
 The ESP32-S3 runs the embedded application, manages the sensor acquisition loop, provides Wi-Fi connectivity, and hosts a web server that serves a React visualization application. The browser application displays live orientation, acceleration data, diagnostics, and a 3D representation of the device orientation.
 
+## Build and Run
+
+Edit _main/wifi_config.json_, replacing symbols as appropriate.
+
+    "ssid": "SSSSSSSSSSSSSSSSSSSSSSSSS"
+    "password": "RRRRRRRRRRRRRRRRRRRR"
+    "ap_ssid": "ESP32-IMU"
+    "ap_password": "YOUR_AP_PASSWORD" 
+    "event_rate_hz": 4
+    "ap_channel": 6
+    "imu_rate_hz": 26
+    "mode": "AUTO"
+
+Go into _imu-viewer_ directory and issue commands:
+
+    % cd imu-viewer
+    % npm install
+    % npm run package
+
+Copy the resulting _distribution_ directory contents into the root of your _Micropython_ SBC.  Power on your SBC.
+
+If it can, _imu-visualizer_ will connect to your LAN and present _192.168.1.45:80_, otherwise it will create an access point you can connect to and then browse to _10.0.0.1:80_.
+
 ## Features
 
 - ESP32-S3 MicroPython firmware
